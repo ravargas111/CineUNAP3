@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cineuna.controller.ContainerController">
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+   <top>
+      <StackPane prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox fx:id="menuAdmin" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="1600.0" stylesheets="@Style.css" visible="false">
+               <children>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="1600.0" spacing="50.0" stylesheets="@Style.css">
+                     <children>
+                        <FontAwesomeIconView fill="#0d0d0d" lineSpacing="10.0" onMouseClicked="#irParamG" size="30" text=" " textAlignment="CENTER" underline="true" wrappingWidth="112.435546875" />
+                        <FontAwesomeIconView fill="#0d0d0d" onMouseClicked="#irMantUsuarios" size="30" text=" " textAlignment="CENTER" textOrigin="BOTTOM" underline="true" wrappingWidth="112.435546875" />
+                        <FontAwesomeIconView fill="#0d0d0d" onMouseClicked="#irMantPeliculas" size="30" text=" " textAlignment="CENTER" underline="true" wrappingWidth="112.435546875" />
+                        <FontAwesomeIconView fill="#0d0d0d" onMouseClicked="#irMantSalas" size="30" text=" " textAlignment="CENTER" textOrigin="BOTTOM" underline="true" wrappingWidth="112.435546875" />
+                     </children>
+                  </HBox>
+                  <Separator prefHeight="2.0" prefWidth="1600.0" />
+               </children>
+            </VBox>
+            <VBox fx:id="menuUsu" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="1600.0" stylesheets="@Style.css">
+               <children>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="1600.0" spacing="50.0" stylesheets="@Style.css">
+                     <children>
+                        <FontAwesomeIconView fill="#0d0d0d" onMouseClicked="#irInfoUsuario" size="30" text=" " textAlignment="CENTER" textOrigin="BOTTOM" underline="true" wrappingWidth="112.435546875" />
+                        <FontAwesomeIconView fill="#0d0d0d" onMouseClicked="#irInfoCine" size="30" text=" " textAlignment="CENTER" textOrigin="BOTTOM" underline="true" wrappingWidth="112.435546875" />
+                        <FontAwesomeIconView fill="#0d0d0d" onMouseClicked="#irCartelera" size="30" text=" " textAlignment="CENTER" underline="true" wrappingWidth="112.435546875" />
+                        <FontAwesomeIconView fill="#0d0d0d" onMouseClicked="#irProximas" size="30" text=" " textAlignment="CENTER" textOrigin="BOTTOM" underline="true" wrappingWidth="112.435546875" />
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+   </top>
+</BorderPane>

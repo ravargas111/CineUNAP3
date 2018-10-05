@@ -1,0 +1,604 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 04/10/2018, 16:13:00 PM
+    Author     : robri
+*/
+*{
+    -fx-base-color-root: white;
+    
+    /*tab pane*/
+    -fx-base-color-tp: transparent;
+    -fx-base-color-tp-header: #059CE5;
+    -fx-base-color-tp-tab:transparent;
+    -fx-base-color-tp-tab-sel:#28C7DB;
+    -fx-base-color-tp-tab-lbltf:white;
+    -fx-base-color-tp-tab-lbltf-sel:white;
+    
+    /*tile pane*/
+    
+    /*jfx dialog layaut*/
+    
+    /*hbox*/
+    
+    /*vbox*/
+    
+    /*scroll pane*/
+    
+    /*label*/
+    
+    /*combo box*/
+    -fx-base-color-cb:#059CE5;
+    -fx-base-color-cb-hover: white;
+    -fx-base-color-cb-unfocus:#059CE5;
+    -fx-base-color-cb-focus:#059CE5;
+    -fx-base-color-cb-tf:black;
+    -fx-base-color-cb-tf-prompt:#059CE5;
+    -fx-base-color-cb-list:white;
+    -fx-base-color-cb-list-tf:#059CE5;
+    
+    
+    /*table view*/
+    -fx-base-color-tv:white;
+    -fx-base-color-tv-border:#059CE5;
+    -fx-base-color-tcell:transparent;
+    -fx-base-color-tcell-border:transparent;
+    -fx-base-color-tv-mitem-focused:#059CE5;
+    -fx-base-color-tv-mitem:transparent;
+    -fx-base-color-tv-header:red;
+    -fx-base-color-tv-header:#059CE5;
+    -fx-base-color-tv-header-tf:white;
+    -fx-base-color-tv-header-sep:white;
+    
+    /*buttons*/
+    -fx-base-color-but:#290A3F;
+    -fx-base-color-but-tf:white;
+    -fx-base-color-but-hover:#771CC2;
+    -fx-base-color-but-tf-hover:white;
+    
+    /*radio button*/
+    
+    /*text field*/
+    -fx-base-color-tf:white;
+    -fx-base-color-tf-text:#290A3F;
+    -fx-base-color-tf-focus:#771CC2;
+    -fx-base-color-tf-unfocus:#290A3F;
+    
+    /*password field*/
+    -fx-base-color-pf: white;
+    -fx-base-color-pf-unfocus:#290A3F;
+    -fx-base-color-pf-focus:#771CC2;
+    -fx-base-color-pf-text:#290A3F;
+    -fx-base-color-pf-prompttext:gray;
+    
+    /*check box*/
+    -fx-base-color-checked:#290A3F;
+    -fx-base-color-unchecked:gray;
+    
+    /*separator*/
+    -fx-base-color-sep:#290A3F;
+    
+    /*hyperlink*/
+    -fx-base-color-hyper-tf:#290A3F;
+    -fx-base-color-hyper-tf-focus:#771CC2;
+    
+    /*glyph*/
+    -fx-base-color-glyph:#290A3F;
+    -fx-base-color-glyph-hover:#771CC2;
+    -fx-base-color-glyph-login: #290A3F;
+}
+
+#root{
+    -fx-background-color: -fx-base-color-root;
+}
+
+.jfx-btn-general{
+    -fx-background-color: #64B5F6;
+}
+.jfx-btn-general:hover{
+    -fx-background-color: #FFC107;
+}
+.jfx-btnimg-tbveliminar{
+    -fx-opacity: 0.8;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: contain;
+    -fx-background-color: #f44336;
+    -fx-background-image : url("../resources/Eliminar-48.png");
+}
+
+.tab-pane
+{
+    -fx-side: top;
+    -fx-background-color: -fx-base-color-tp;
+    /*-fx-tab-min-width:90px;*/
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-side: top;
+    -fx-opacity:1;
+    -fx-background-radius: 5%;
+    -fx-background-color: -fx-base-color-tp-header;
+}
+
+.tab-pane .tab
+{
+    -fx-background-radius: 30 30 30 30;
+    -fx-border-radius: 30 30 30 30;
+    -fx-background-color: -fx-base-color-tp-tab;
+}
+
+.tab-pane .tab:hover{
+    -fx-translate-y: -3;
+}
+
+.tab-pane .tab:selected
+{
+    -fx-background-color: -fx-base-color-tp-tab-sel;
+    -fx-traslate-x: 1.2;
+    -fx-traslate-y: 1.2;
+}
+
+.tab .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: -fx-base-color-tp-tab-lbltf;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.tab:selected .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: -fx-base-color-tp-tab-lbltf-sel;
+    /*-fx-scale-x: 1.2;*/
+    /*-fx-scale-y: 1.2;*/
+}
+
+/*todo*/
+/*
+.scroll-pane{
+     -fx-background-color: ;
+}
+
+.scroll-bar:horizontal,.scroll-bar:vertical{
+    -fx-background-color: ;
+}
+
+.scroll-bar:horizontal .track,.scroll-bar:vertical .track{
+    -fx-background-color: ;
+}
+
+.scroll-bar:horizontal .thumb,.scroll-bar:vertical .thumb {
+    -fx-background-color: ;
+    -fx-background-radius: 5em;
+}
+
+.jfx-scroll-pane{
+    -fx-background-color:;
+}
+
+.jfx-scroll-bar:horizontal{
+    -fx-background-color:;    
+}
+*/
+
+/*todo*/
+/*
+.jfx-dialog-layout{
+    -fx-background-color: ;
+    -fx-background-fills: ;
+    -fx-border-color: ;
+    -fx-opacity: 0.95;
+    -fx-border-width: 2px;
+    -fx-alignment: center;
+}
+*/
+
+/*todo*/
+/*
+.jfx-combo-box{
+    -fx-base-color:;
+    -jfx-focus-color:;
+    -jfx-unfocus-color:;
+    -fx-text-fill:;
+    -fx-font-size:10px;
+    -fx-text-fill: ;
+    -fx-prompt-text-fill: ;
+}
+
+.jfx-combo-box:hover{
+    -fx-color: ;
+}
+
+.jfx-combo-box .list-cell 
+{
+    -fx-background: ;
+    -fx-background-color:;
+    -fx-text-fill: ;
+    -fx-padding: 3 0 2 7;
+    -fx-cell-size: 1.66667em; 
+}
+
+.combo-box-popup .list-view 
+{
+    -fx-background-color: , ;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( gaussian ,  , 8, 0.0 , 0 , 0 );
+}    
+
+.combo-box-popup .list-view .list-cell 
+{
+    -fx-padding: 4 0 4 5;
+    -fx-background-color: ;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover 
+{
+    -fx-background: ;
+    -fx-background-color: ;
+    -fx-text-fill: ;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover 
+{
+    -fx-background-color: ;
+    -fx-text-fill: ;
+}
+
+.combo-box-base  
+{
+    -fx-background-color: , , , ;
+    -fx-background-radius: 5, 5, 4, 3;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-padding: 0;
+}
+
+.combo-box-base:hover
+{
+    -fx-color: ;
+}
+
+.combo-box-base:showing 
+{
+    -fx-color: ;
+}
+
+.combo-box-base:focused {
+    -fx-background-color: ;
+    -fx-background-radius: 6.4, 4, 5, 3;
+    -fx-background-insets: -1.4, 0, 1, 2;
+}
+
+.combo-box-base:disabled {
+    -fx-opacity: .4;
+}
+*/
+
+/*todo*/
+/*
+.jfx-date-picker{
+    -fx-background-color: ;
+    -jfx-default-color:;
+}
+
+.jfx-date-picker:focused{
+    -jfx-default-color: ;
+}
+
+.jfx-date-picker .combo-box {
+-fx-background-insets:0px ;
+-fx-border-width: 0px;
+  }
+
+.jfx-date-picker:focused .tab-pane{
+      -fx-background-color: ;
+  } 
+  
+.jfx-date-picker .jfx-text-field{
+-fx-background-radius:0px ;
+-fx-border-color: ;
+}
+
+.jfx-date-picker:focused .jfx-text-field{
+    -fx-text-fill: ;
+    -fx-prompt-text-fill: ;
+}
+
+.jfx-date-picker .arrow-button{
+-fx-background-radius:0px ;
+-fx-background-color: ;
+}
+
+.jfx-date-picker .arrow-button .arrow{
+-fx-background-radius:0px ;
+-fx-background-color: ;
+}
+
+.jfx-date-picker .arrow-button:hover .arrow{
+-fx-background-radius:0px ;
+-fx-background-color: red;
+ }
+
+ .jfx-date-picker .button {
+-fx-background-color: ;
+-fx-border-color:;
+-fx-pref-height: 5px;
+-fx-pref-width: 5px;
+-fx-border-width: 2px;
+ }
+
+ .jfx-date-picker .button:hover {
+-fx-border-color:;
+-fx-pref-height: 5px;
+-fx-pref-width: 5px;
+ }
+
+.jfx-date-picker .button .arrow:pressed { 
+-fx-border-color:;
+ }
+
+ .jfx-date-picker .cell {
+-fx-background-color: ;
+-fx-pref-width:25px ;
+-fx-pref-height:30px ;
+ }
+
+.jfx-date-picker .cell:hover {
+-fx-background-color: ;
+-fx-text-fill: ;
+}
+
+.jfx-date-picker .cell:focused {
+-fx-background-color:;
+-fx-text-fill: ;
+ }
+
+.date-picker-popup  {
+-fx-border-color: ;
+-fx-background-color: ;
+ }
+*/
+ 
+ /*todo*/
+ .jfx-popup-container{
+    -fx-background-color: -fx-base-color;
+    -fx-border-color: -fx-dark-color;
+}
+
+/*todo*/
+ .separator{
+    -fx-orientation: horizontal; 
+    -fx-border-style: none;
+    -fx-background-color: transparent;
+}
+
+.separator .line {
+    -fx-border-style: solid;
+    -fx-border-width: 1; 
+    -fx-border-: 0; 
+    -fx-border-color: -fx-base-color-sep;
+} 
+
+.table-view{
+    -fx-background-color: -fx-base-color-tv;
+    -fx-border-color: -fx-base-color-tv-border;
+}
+
+.table-view .column-header,
+.table-view .column-header .filler,
+.table-view .column-header-background .filler {
+    -fx-table-cell-border-color: -fx-base-color-tcell-border;
+    -fx-border-width: 0.1px;
+    -fx-background-color: white,-fx-base-color-tcell;
+}
+
+.table-view .menu-item:focused {
+    -fx-background-color: -fx-base-color-tv-mitem-focused;
+
+}
+
+.table-view .menu-item .label {
+    -fx-padding: 5 0 5 0;
+}
+
+.table-view .column-header,
+.table-view .column-header-background,
+.table-view .column-header-background .filler {
+    -fx-background-color: -fx-base-color-tv-header;
+}
+
+.table-view .column-header {
+    -fx-border-width: 0 1 0 1;
+    -fx-border-color: -fx-base-color-tv-header-border;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: -fx-base-color-tv-header-tf;
+    -fx-font-size: 12px; 
+    -fx-padding: 16 0 16 0;
+}
+
+.table-view .column-header .arrow, .table-view .column-header .sort-order-dot {
+    -fx-background-color: white;
+}
+
+.table-view .column-header:last-visible {
+    -fx-border-width: 0 2 0 1;
+}
+
+.table-view .column-header-background {
+    -fx-border-width: 0 0.0 1 0;
+    -fx-border-color: -fx-base-color-tv-header-sep;
+}
+
+/*todo*/
+/*
+.jfx-list-view{
+   -fx-background-color:;
+    -fx-opacity: 0.8;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+}
+.list-cell{
+    -fx-text-fill: white;
+    -fx-background-color:derive(,30%),black;
+    -fx-opacity: 0.8;
+}
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(derive(,10%) 100%, derive(,30%) 75%);
+    -fx-text-fill: white;
+}
+
+.list-cell:odd {
+    -fx-cell-hover-color: red;
+    -fx-background-color: derive(,50%);
+}
+
+.list-cell:filled:hover {
+    -fx-cell-hover-color: ;
+    -fx-text-fill: white;
+}
+*/
+
+.jfx-button{
+    -jfx-button-type:FLAT;
+    -fx-background-color: -fx-base-color-but;
+    -fx-text-fill: -fx-base-color-but-tf;
+}
+
+.jfx-button:hover{
+    -fx-background-color: -fx-base-color-but-hover;
+    -fx-text-fill: -fx-base-color-but-tf-hover;
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+}
+
+
+
+/*todo*/
+/*
+.jfx-button .rippler{
+    -jfx-rippler-fill:-fx-base-color-rippler-button;
+}
+
+.jfx-button:hover{
+    -fx-background-color:-fx-base-color-hover-button ;
+}
+
+.jfx-button:disabled{
+    -fx-background-color: -fx-base-color-hover-disable;
+    -fx-opacity: 0.4;
+}
+
+.jfx-button>ImageView{
+    -fx-image: url("../resources/icons/buscar.png");
+    -fx-background-color:-fx-base-color-button ;
+    -jfx-button-type:RAISED;
+    -fx-opacity: 0.7;
+    -fx-content-display: center;
+    -fx-text-fill: ;
+    -fx-font-weight:bold;
+    -fx-alignment: CENTER;
+    -fx-background-radius: 40 40 40 40;
+    -fx-border-radius: 40 40 40 40;
+    -fx-border-width:5;
+}
+*/
+
+/*todo*/
+/*
+.jfx-radio-button{
+    -fx-text-fill: ;
+    -fx-background-color:;
+    -jfx-selected-color:;
+}*/
+
+.jfx-check-box{
+    -jfx-checked-color:-fx-base-color-checked;
+    -jfx-unchecked-color:-fx-base-color-unchecked;
+}
+
+
+.jfx-text-field{
+    -fx-alignment: center;
+    -jfx-focus-color:-fx-base-color-tf-focus;
+    -jfx-unfocus-color:-fx-base-color-tf-unfocus;
+    -fx-background-color: -fx-base-color-tf;
+    -fx-text-fill: -fx-base-color-tf-text;
+    /*-fx-font-size: ;*/
+}
+
+.jfx-password-field{
+    -fx-alignment: center;
+    -fx-font-size:10px;
+    -fx-background-color: -fx-base-color-pf;
+    -jfx-unfocus-color:-fx-base-color-pf-unfocus;
+    -jfx-focus-color:-fx-base-color-pf-focus;
+    -fx-text-fill:-fx-base-color-pf-text;
+    -fx-prompt-text-fill: -fx-base-color-pf-prompttext; 
+}
+
+/*
+.jfx-password-field:focused{
+    -fx-font-size:13px;
+    -fx-text-fill:;
+    -fx-prompt-text-fill: ;
+}*/
+
+
+/*todo*/
+/*
+.label{
+    -fx-text-fill: ;
+    -fx-alignment: center;
+    -fx-font-size: 15;
+}
+*/
+
+.hyperlink{
+    -fx-text-fill: -fx-base-color-hyper-tf;
+    -fx-background-color: transparent;
+}
+
+.hyperlink:hover{
+    -fx-text-fill: -fx-base-color-hyper-tf-focus;
+}
+
+
+/*todo*/
+/*
+.jfx-slider .thumb{
+    -fx-background-image: url("../resources/imgs/trollebusp.png"); 
+   -fx-padding: 5; 
+   -fx-pref-width: 30; 
+   -fx-pref-height: 20;
+    -fx-background-size: 30 20;
+    -fx-text-fill: ;
+    
+    -fx-background-color:;
+}
+*/
+
+.glyph-icon{
+    -fx-fill: -fx-base-color-glyph;
+    -glyph-size: 20px;
+    -fx-text-alignment: center;
+    -fx-line-spacing: 10;
+}
+
+.glyph-icon:hover{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-effect:  dropshadow(three-pass-box, rgba(0,0,0,0.2), 4, 0, 0, 0);
+    -fx-fill: -fx-base-color-glyph-hover;
+}
+
+.glyph-icon-login{
+    -fx-fill: -fx-base-color-glyph-login;
+    -glyph-size: 70px;
+    -fx-text-alignment: center;
+    -fx-line-spacing: 10;
+}

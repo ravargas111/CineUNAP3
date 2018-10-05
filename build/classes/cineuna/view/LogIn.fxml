@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="460.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cineuna.controller.LogInController">
+   <children>
+      <VBox fx:id="vbInicioSesion" alignment="CENTER" prefHeight="400.0" prefWidth="604.0" spacing="20.0">
+         <children>
+            <FontAwesomeIconView size="20" styleClass="glyph-icon-login" text="" wrappingWidth="103.4285717010498">
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </FontAwesomeIconView>
+            <JFXTextField fx:id="txtUsuario" maxHeight="70.0" maxWidth="300.0" prefHeight="40.0" prefWidth="300.0" promptText="Usuario" />
+            <JFXPasswordField fx:id="txtClave" maxHeight="70.0" maxWidth="300.0" prefHeight="40.0" prefWidth="300.0" promptText="Contraseña" />
+            <JFXCheckBox fx:id="cbAdmin" text="Administrador">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXCheckBox>
+            <JFXButton onAction="#irMain" prefHeight="52.0" prefWidth="142.0" text="Entrar">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </JFXButton>
+            <Hyperlink onAction="#irRecuperacion" text="¿Olvidó su cuenta?" />
+            <Hyperlink onAction="#irRegistro" text="Registrarse" underline="true" />
+         </children>
+      </VBox>
+   </children>
+</StackPane>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="1600.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cineuna.controller.MenuUsuarioController">
+   <children>
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="1600.0" spacing="50.0" stylesheets="@Style.css">
+         <children>
+            <FontAwesomeIconView fill="#0d0d0d" glyphName="info" onMouseClicked="#irInfoUsuario" size="30" text="                   USUARIO" textAlignment="CENTER" textOrigin="BOTTOM" underline="true" wrappingWidth="112.435546875" />
+            <FontAwesomeIconView fill="#0d0d0d" glyphName="info" onMouseClicked="#irInfoCine" size="30" text="                   CINE" textAlignment="CENTER" textOrigin="BOTTOM" underline="true" wrappingWidth="112.435546875" />
+            <FontAwesomeIconView fill="#0d0d0d" glyphName="INFO" onMouseClicked="#irCartelera" size="30" text=" CARTELERA" textAlignment="CENTER" underline="true" wrappingWidth="112.435546875" />
+            <FontAwesomeIconView fill="#0d0d0d" glyphName="COG" onMouseClicked="#irProximas" size="30" text="               PRÓXIMAS" textAlignment="CENTER" textOrigin="BOTTOM" underline="true" wrappingWidth="112.435546875" />
+         </children>
+      </HBox>
+      <Separator prefWidth="200.0" />
+   </children>
+</VBox>
