@@ -1,5 +1,7 @@
 
 *.properties
 *.properties
-dist/
-build/
+dist/*
+build/*
+build/built-jar.properties
+dist/CineUNA.jar
