@@ -76,6 +76,7 @@ public class LogInController extends Controller implements Initializable {
                 else
                    AppContext.getInstance().set("administrador", (Boolean)false); 
                 
+                AppContext.getInstance().set("nombre", (String)this.txtUsuario.getText());
                 FlowController.getInstance().goMain();
                 ((Stage) root.getScene().getWindow()).close();
                 
