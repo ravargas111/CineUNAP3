@@ -62,6 +62,7 @@ and open the template in the editor.
     
     /*buttons*/
     -fx-base-color-but:#290A3F;
+    -fx-base-color-but2:#202020;
     -fx-base-color-but-tf:white;
     -fx-base-color-but-hover:#771CC2;
     -fx-base-color-but-tf-hover:white;
@@ -493,7 +494,9 @@ and open the template in the editor.
     -fx-scale-y: 1.2;
 }
 
-
+.jfx-button2{
+    -fx-background-color: -fx-base-color-but2;
+}
 
 /*todo*/
 /*

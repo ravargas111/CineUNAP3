@@ -7,12 +7,32 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="460.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cineuna.controller.LogInController">
    <children>
-      <VBox fx:id="vbInicioSesion" alignment="CENTER" prefHeight="400.0" prefWidth="604.0" spacing="20.0">
+      <StackPane fx:id="vbLogIn" prefHeight="150.0" prefWidth="200.0" visible="false">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+               <children>
+                  <ImageView fitHeight="79.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/logoEjemplo.jpg" />
+                     </image>
+                  </ImageView>
+                  <JFXButton onAction="#irInicioSesion" prefHeight="25.0" prefWidth="174.0" text="Iniciar Sesión" />
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="326.0" text="----------- ¿Nueva cuenta? -----------" />
+                  <JFXButton alignment="CENTER" onAction="#irRegistroCliente" prefHeight="25.0" prefWidth="92.0" styleClass="jfx-button2" text="Cliente" />
+                  <JFXButton alignment="CENTER" styleClass="jfx-button2" text="Administrador" visible="false" />
+               </children>
+            </VBox>
+         </children>
+      </StackPane>
+      <VBox fx:id="vbInicioSesion" alignment="CENTER" prefHeight="400.0" prefWidth="604.0" spacing="20.0" visible="false">
          <children>
             <FontAwesomeIconView size="20" styleClass="glyph-icon-login" text="" wrappingWidth="103.4285717010498">
                <VBox.margin>
@@ -21,18 +41,34 @@
             </FontAwesomeIconView>
             <JFXTextField fx:id="txtUsuario" maxHeight="70.0" maxWidth="300.0" prefHeight="40.0" prefWidth="300.0" promptText="Usuario" />
             <JFXPasswordField fx:id="txtClave" maxHeight="70.0" maxWidth="300.0" prefHeight="40.0" prefWidth="300.0" promptText="Contraseña" />
-            <JFXCheckBox fx:id="cbAdmin" text="Administrador">
+            <JFXCheckBox fx:id="cbAdmin" onAction="#cambiarModoIngreso" text="Administrador">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </JFXCheckBox>
-            <JFXButton onAction="#irMain" prefHeight="52.0" prefWidth="142.0" text="Entrar">
+            <JFXButton onAction="#irMain" prefHeight="41.0" prefWidth="142.0" text="Entrar">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </JFXButton>
-            <Hyperlink onAction="#irRecuperacion" text="¿Olvidó su cuenta?" />
-            <Hyperlink onAction="#irRegistro" text="Registrarse" underline="true" />
+            <VBox fx:id="vbOpcUsu" alignment="CENTER" prefHeight="93.0" prefWidth="460.0" spacing="20.0">
+               <children>
+                  <Hyperlink onAction="#irRecuperacion" text="¿Olvidó su cuenta?" />
+                  <Hyperlink onAction="#irRegistro" text="Auto Registro" underline="true" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox fx:id="vbRegUsu" prefHeight="200.0" prefWidth="100.0" visible="false" />
+      <VBox fx:id="vbRegCliente" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+         <children>
+            <JFXTextField fx:id="tfRegNombre" maxHeight="70.0" maxWidth="300.0" prefHeight="30.0" prefWidth="300.0" promptText="Nombre" />
+            <JFXTextField fx:id="tfRegApe" maxHeight="70.0" maxWidth="300.0" prefHeight="30.0" prefWidth="300.0" promptText="Apellido 1" />
+            <JFXTextField fx:id="tfRegUsu" maxHeight="70.0" maxWidth="300.0" prefHeight="30.0" prefWidth="300.0" promptText="Usuario" />
+            <JFXPasswordField fx:id="tfRegContra" maxHeight="70.0" maxWidth="300.0" prefHeight="30.0" prefWidth="300.0" promptText="Contraseña" />
+            <JFXPasswordField fx:id="tfRegcontraRep" maxHeight="70.0" maxWidth="300.0" prefHeight="30.0" prefWidth="300.0" promptText="Repita Contraseña" />
+            <JFXTextField fx:id="tfRegCorreo" maxHeight="70.0" maxWidth="300.0" prefHeight="30.0" prefWidth="300.0" promptText="Correo Electrónico" />
+            <JFXButton onAction="#registrarCliente" text="Registrar" />
          </children>
       </VBox>
    </children>

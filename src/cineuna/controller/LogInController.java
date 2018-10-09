@@ -40,6 +40,26 @@ public class LogInController extends Controller implements Initializable {
     private JFXPasswordField txtClave;
     @FXML
     private JFXCheckBox cbAdmin;
+    @FXML
+    private VBox vbOpcUsu;
+    @FXML
+    private VBox vbRegUsu;
+    @FXML
+    private VBox vbRegCliente;
+    @FXML
+    private JFXTextField tfRegNombre;
+    @FXML
+    private JFXTextField tfRegApe;
+    @FXML
+    private JFXTextField tfRegUsu;
+    @FXML
+    private JFXPasswordField tfRegContra;
+    @FXML
+    private JFXPasswordField tfRegcontraRep;
+    @FXML
+    private JFXTextField tfRegCorreo;
+    @FXML
+    private StackPane vbLogIn;
 
     /**
      * Initializes the controller class.
@@ -51,6 +71,7 @@ public class LogInController extends Controller implements Initializable {
 
     @Override
     public void initialize() {
+        reinicia();
     }
 
     @FXML
@@ -93,5 +114,74 @@ public class LogInController extends Controller implements Initializable {
     @FXML
     private void irRegistro(ActionEvent event) {
     }    
+
+    @FXML
+    private void irInicioSesion(ActionEvent event) {
+        this.vbLogIn.setVisible(false);
+        this.vbInicioSesion.setVisible(true);
+    }
+
+    @FXML
+    private void irRegistroCliente(ActionEvent event) {
+        this.vbLogIn.setVisible(false);
+        this.vbRegCliente.setVisible(true);
+    }
+
+    @FXML
+    private void cambiarModoIngreso(ActionEvent event) {
+        if(this.cbAdmin.isSelected())
+        this.vbOpcUsu.setVisible(false);
+        else
+            this.vbOpcUsu.setVisible(true);
+    }
     
+    @FXML
+    private void registrarCliente(ActionEvent event) {
+        validaCamposRegistro();
+    }
+    
+    private Boolean validaCamposRegistro(){
+        Boolean completo = true;
+        String estado = "";
+        if(tfRegNombre.getText().isEmpty()){
+            completo=false;
+            estado+="Ingresar nombre\n";
+        }
+        if(tfRegApe.getText().isEmpty()){
+            completo = false;
+            estado+="Ingresar Apellido\n";
+        }
+        if(tfRegUsu.getText().isEmpty()){
+            completo = false;
+            estado+="Ingresar Usuario\n";
+        }
+        if(tfRegContra.getText().isEmpty()||tfRegContra.getText().length()<8){
+            completo = false;
+            estado+="Tamaño mínimo de contraseña de 8 caracteres\n";
+        }
+        if(tfRegcontraRep.getText() == null ? tfRegContra.getText() != null : !tfRegcontraRep.getText().equals(tfRegContra.getText())){
+            completo = false;
+            estado+="Contraseñas no coinciden\n";
+        }
+        if(tfRegCorreo.getText().isEmpty()){
+            completo = false;
+            estado+="Ingresar Correo\n";
+        }
+        
+        Mensaje msj = new Mensaje();
+        if(!completo)
+            msj.show(Alert.AlertType.ERROR, "Algunos problemas encontrados", estado);
+        else{
+            msj.show(Alert.AlertType.INFORMATION, "Registrado", "favor confirmar mediante clave enviada al correo");
+            reinicia();
+        }
+        return completo;
+    }
+    
+    private void reinicia(){
+        this.vbLogIn.setVisible(true);
+        this.vbInicioSesion.setVisible(false);
+        this.vbRegCliente.setVisible(false);
+    }
+
 }
