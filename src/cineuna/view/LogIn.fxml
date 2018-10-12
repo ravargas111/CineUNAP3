@@ -15,17 +15,17 @@
 
 <StackPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="529.0" prefWidth="460.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cineuna.controller.LogInController">
    <children>
-      <StackPane fx:id="vbLogIn" prefHeight="150.0" prefWidth="200.0" visible="false">
+      <StackPane fx:id="vbLogIn" prefHeight="150.0" prefWidth="200.0">
          <children>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                <children>
                   <ImageView fitHeight="79.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../resources/logoEjemplo.jpg" />
+                        <Image url="@../resources/UNA%20Logo.png" />
                      </image>
                   </ImageView>
                   <JFXButton onAction="#irInicioSesion" prefHeight="25.0" prefWidth="174.0" text="Iniciar Sesión" />
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="326.0" text="----------- ¿Nueva cuenta? -----------" />
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="326.0" text="----------- ¿Nueva cuenta? -----------" textFill="#f5eded" />
                   <JFXButton alignment="CENTER" onAction="#irRegistroCliente" prefHeight="25.0" prefWidth="92.0" styleClass="jfx-button2" text="Cliente" />
                   <JFXButton alignment="CENTER" styleClass="jfx-button2" text="Administrador" visible="false" />
                </children>
@@ -60,7 +60,7 @@
          </children>
       </VBox>
       <VBox fx:id="vbRegUsu" prefHeight="200.0" prefWidth="100.0" visible="false" />
-      <VBox fx:id="vbRegCliente" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+      <VBox fx:id="vbRegCliente" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" visible="false">
          <children>
             <JFXTextField fx:id="tfRegNombre" maxHeight="70.0" maxWidth="300.0" prefHeight="30.0" prefWidth="300.0" promptText="Nombre" />
             <JFXTextField fx:id="tfRegApe" maxHeight="70.0" maxWidth="300.0" prefHeight="30.0" prefWidth="300.0" promptText="Apellido 1" />
