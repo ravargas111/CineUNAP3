@@ -3,22 +3,24 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1600.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cineuna.controller.ContainerController">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1357.0" style="-fx-background-color: white;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cineuna.controller.ContainerController">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
    <left>
-      <HBox prefHeight="673.0" prefWidth="64.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="673.0" prefWidth="40.0" BorderPane.alignment="CENTER">
          <children>
-            <StackPane prefHeight="670.0" prefWidth="59.0" style="-fx-background-color: #202020;">
+            <StackPane prefHeight="670.0" prefWidth="40.0" styleClass="menu-lateral">
                <children>
-                  <VBox fx:id="menuAdmin" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="70.0" spacing="70.0" stylesheets="@Style.css" visible="false" StackPane.alignment="TOP_CENTER">
+                  <VBox fx:id="menuAdmin" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="40.0" spacing="70.0" stylesheets="@Style.css" visible="false" StackPane.alignment="TOP_CENTER">
                      <children>
                         <FontAwesomeIconView fill="#0d0d0d" lineSpacing="10.0" onMouseClicked="#irParamG" size="30" text=" " textAlignment="CENTER" underline="true" wrappingWidth="70.435546875" />
                         <FontAwesomeIconView fill="#0d0d0d" onMouseClicked="#irMantUsuarios" size="30" text=" " textAlignment="CENTER" textOrigin="BOTTOM" underline="true" wrappingWidth="70.435546875" />
@@ -32,7 +34,7 @@
                         <Insets top="70.0" />
                      </padding>
                   </VBox>
-                  <VBox fx:id="menuUsu" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="70.0" spacing="70.0" stylesheets="@Style.css" StackPane.alignment="TOP_CENTER">
+                  <VBox fx:id="menuUsu" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="45.0" spacing="70.0" stylesheets="@Style.css" StackPane.alignment="TOP_CENTER">
                      <children>
                         <FontAwesomeIconView fill="#0d0d0d" onMouseClicked="#irInfoUsuario" size="30" text=" " textAlignment="CENTER" textOrigin="BOTTOM" underline="true" wrappingWidth="70.435546875" />
                         <FontAwesomeIconView fill="#0d0d0d" onMouseClicked="#irInfoCine" size="30" text=" " textAlignment="CENTER" textOrigin="BOTTOM" underline="true" wrappingWidth="70.435546875" />
@@ -55,10 +57,15 @@
       </HBox>
    </left>
    <top>
-      <AnchorPane fx:id="apTop" prefHeight="56.0" prefWidth="1600.0" style="-fx-background-color: #202020;" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="apTop" prefHeight="45.0" prefWidth="1600.0" styleClass="menu-lateral" BorderPane.alignment="CENTER">
          <children>
-            <FontAwesomeIconView fx:id="btnOpcionesUsu" layoutX="1174.0" layoutY="35.0" text="" />
-            <Hyperlink fx:id="hlNombreUsuario" layoutX="1197.0" layoutY="17.0" prefHeight="23.0" prefWidth="117.0" styleClass="hyperlink-dark" text="USUARIO" />
+            <FontAwesomeIconView fx:id="btnOpcionesUsu" layoutX="1174.0" layoutY="35.0" text="" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="10.0" />
+            <Hyperlink fx:id="hlNombreUsuario" layoutX="1176.0" layoutY="11.0" prefHeight="23.0" prefWidth="117.0" styleClass="hyperlink-dark" text="USUARIO" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="11.0" />
+            <ImageView fitHeight="38.0" fitWidth="40.0" layoutX="14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="8.0">
+               <image>
+                  <Image url="@../resources/UNA%20Logo.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </top>

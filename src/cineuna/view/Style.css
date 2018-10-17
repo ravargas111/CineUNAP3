@@ -8,8 +8,9 @@ and open the template in the editor.
     Author     : robri
 */
 *{
-    -fx-base-color-root: white;
-    -fx-base-color-lateral:  #202020;
+    -fx-base-color-root: black;
+    -fx-base-color-root2: white;
+    -fx-base-color-lateral:  black;
     
     /*tab pane*/
     -fx-base-color-tp: transparent;
@@ -32,7 +33,7 @@ and open the template in the editor.
     /*label*/
     
     /*popup*/
-    -fx-base-color-popup:white;
+    -fx-base-color-popup:black;
     
     
     /*combo box*/
@@ -61,46 +62,53 @@ and open the template in the editor.
     -fx-base-color-tv-header-sep:white;
     
     /*buttons*/
-    -fx-base-color-but:#290A3F;
-    -fx-base-color-but2:#202020;
+    -fx-base-color-but:#FF0A0A;
+    -fx-base-color-but-border: transparent;
+    -fx-base-color-but2:transparent;
+    -fx-base-color-but2-border: white;
     -fx-base-color-but-tf:white;
-    -fx-base-color-but-hover:#771CC2;
+    -fx-base-color-but-hover:#FF0A0A;
+    -fx-base-color-but2-hover:transparent;
     -fx-base-color-but-tf-hover:white;
     
     /*radio button*/
     
     /*text field*/
     -fx-base-color-tf:white;
-    -fx-base-color-tf-text:#290A3F;
-    -fx-base-color-tf-focus:#771CC2;
-    -fx-base-color-tf-unfocus:#290A3F;
+    -fx-base-color-tf-text:black;
+    -fx-base-color-tf-focus:#FF0A0A;
+    -fx-base-color-tf-unfocus:white;
     
     /*password field*/
     -fx-base-color-pf: white;
-    -fx-base-color-pf-unfocus:#290A3F;
-    -fx-base-color-pf-focus:#771CC2;
-    -fx-base-color-pf-text:#290A3F;
-    -fx-base-color-pf-prompttext:gray;
+    -fx-base-color-pf-unfocus:white;
+    -fx-base-color-pf-focus:#FF0A0A;
+    -fx-base-color-pf-text:black;
+    -fx-base-color-pf-prompttext:black;
     
     /*check box*/
-    -fx-base-color-checked:#290A3F;
-    -fx-base-color-unchecked:gray;
+    -fx-base-color-checked:#FF0A0A;
+    -fx-base-color-unchecked:white;
     
     /*separator*/
-    -fx-base-color-sep:#771CC2;
+    -fx-base-color-sep:#FF0A0A;
     
     /*hyperlink*/
-    -fx-base-color-hyper-tf:#290A3F;
-    -fx-base-color-hyper-tf-focus:#771CC2;
+    -fx-base-color-hyper-tf:white;
+    -fx-base-color-hyper-tf-focus:#FF0A0A;
     
     /*glyph*/
     -fx-base-color-glyph:white;
-    -fx-base-color-glyph-hover:#771CC2;
-    -fx-base-color-glyph-login: #290A3F;
+    -fx-base-color-glyph-hover:#FF0A0A;
+    -fx-base-color-glyph-login: white;
 }
 
 #root{
     -fx-background-color: -fx-base-color-root;
+}
+
+.menu-lateral{
+    -fx-background-color: -fx-base-color-lateral;
 }
 
 .jfx-btn-general{
@@ -114,7 +122,7 @@ and open the template in the editor.
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: contain;
-    -fx-background-color: #f44336;
+    -fx-background-color: #FF0A0A;
     -fx-background-image : url("../resources/Eliminar-48.png");
 }
 
@@ -485,6 +493,7 @@ and open the template in the editor.
     -jfx-button-type:FLAT;
     -fx-background-color: -fx-base-color-but;
     -fx-text-fill: -fx-base-color-but-tf;
+    -fx-border-radius: 30,30,30,30;
 }
 
 .jfx-button:hover{
@@ -496,6 +505,12 @@ and open the template in the editor.
 
 .jfx-button2{
     -fx-background-color: -fx-base-color-but2;
+    -fx-border-color: -fx-base-color-but2-border;
+}
+
+.jfx-button2:hover{
+    -fx-background-color: -fx-base-color-but2-hover;
+    -fx-border-color: -fx-base-color-but;
 }
 
 /*todo*/
