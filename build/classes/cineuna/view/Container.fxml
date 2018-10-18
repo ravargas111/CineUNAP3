@@ -59,7 +59,7 @@
    <top>
       <AnchorPane fx:id="apTop" prefHeight="45.0" prefWidth="1600.0" styleClass="menu-lateral" BorderPane.alignment="CENTER">
          <children>
-            <FontAwesomeIconView fx:id="btnOpcionesUsu" layoutX="1174.0" layoutY="35.0" text="" AnchorPane.rightAnchor="170.0" AnchorPane.topAnchor="10.0" />
+            <FontAwesomeIconView fx:id="btnOpcionesUsu" layoutX="1174.0" layoutY="35.0" text="" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="10.0" />
             <Hyperlink fx:id="hlNombreUsuario" layoutX="1176.0" layoutY="11.0" prefHeight="23.0" prefWidth="117.0" styleClass="hyperlink-dark" text="USUARIO" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="11.0" />
             <ImageView fitHeight="38.0" fitWidth="40.0" layoutX="14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="8.0">
                <image>

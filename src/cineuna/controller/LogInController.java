@@ -11,7 +11,13 @@ import cineuna.util.Mensaje;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +28,22 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.SAXException;
 
 /**
  * FXML Controller class
@@ -77,6 +99,10 @@ public class LogInController extends Controller implements Initializable {
     @FXML
     private void irMain(ActionEvent event) {
         try{
+           Boolean veri = sendEmail();
+           if (veri) {
+               new Mensaje().showModal(Alert.AlertType.ERROR, "Correo prueba", (Stage) root.getScene().getWindow(), "Se envio.");
+           }
         if (txtUsuario.getText() == null || txtUsuario.getText().isEmpty()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Validación de usuario", (Stage) root.getScene().getWindow(), "Es necesario digitar un usuario para ingresar al sistema.");
             } else if (txtClave.getText() == null || txtClave.getText().isEmpty()) {
@@ -182,6 +208,97 @@ public class LogInController extends Controller implements Initializable {
         this.vbLogIn.setVisible(true);
         this.vbInicioSesion.setVisible(false);
         this.vbRegCliente.setVisible(false);
+    }
+    // Prueba de enviar email
+     public boolean sendEmail() throws ParserConfigurationException, SAXException, IOException, AddressException, MessagingException {
+
+        final String username = "mario.flores2598@gmail.com";
+        // final String username = "eflores.crc@gmail.com";
+        final String password = "m60a16r53i53o";
+
+        Properties props = new Properties();
+        /*props.put("mail.smtp.auth", true);
+        props.put("mail.smtp.starttls.enable", true);
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");*/
+
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class",
+                "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "465");
+
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+
+        try {
+
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username));
+            message.setRecipients(Message.RecipientType.TO,
+            InternetAddress.parse("mario.flores2598@gmail.com"));
+            message.setSubject("Comprobando mail ") ;
+            message.setText("GEsta es la prueba.");
+
+            MimeBodyPart messageBodyPart1 = new MimeBodyPart();
+            MimeBodyPart messageBodyPart2 = new MimeBodyPart();
+            MimeBodyPart messageBodyPart3 = new MimeBodyPart();
+
+            Multipart multipart = new MimeMultipart();
+
+          /*  messageBodyPart1 = new MimeBodyPart();
+            String file = parametrosGeneralesDto.getRutaComprobantesXmlFirmado() + comp.getClave() + "firmado.xml";
+            String fileName = "Comprobante-" + comp.getClave() + ".xml";
+            DataSource source = new FileDataSource(file);
+            messageBodyPart1.setDataHandler(new DataHandler(source));
+            messageBodyPart1.setFileName(fileName);
+
+            messageBodyPart2 = new MimeBodyPart();
+            String file2 = parametrosGeneralesDto.getRutaComprobantesPdf() + comp.getClave() + ".pdf";
+            String fileName2 = "Comprobante-" + comp.getClave() + ".pdf";
+            DataSource source2 = new FileDataSource(file2);
+            messageBodyPart2.setDataHandler(new DataHandler(source2));
+            messageBodyPart2.setFileName(fileName2);*/
+
+           /* if (comprobanteHaciendaDto.getRespuestaXml() != null) {
+
+                String string = comprobanteHaciendaDto.getRespuestaXml();
+                byte[] byteArray = Base64.decodeBase64(string.getBytes());
+                String decodedString = new String(byteArray);
+                InputStream stream = new ByteArrayInputStream(decodedString.getBytes(StandardCharsets.UTF_8));
+
+                File XmlRespuestaFile = new File("respuestaMinisterioHacienda.xml");
+                FileUtils.writeByteArrayToFile(XmlRespuestaFile, byteArray);
+
+                messageBodyPart3 = new MimeBodyPart();
+
+                DataSource source3 = new FileDataSource(XmlRespuestaFile);
+                messageBodyPart3.setDataHandler(new DataHandler(source3));
+                messageBodyPart3.setFileName(XmlRespuestaFile.getName());
+                multipart.addBodyPart(messageBodyPart3);
+
+            }*/
+
+           // multipart.addBodyPart(messageBodyPart1);
+           // multipart.addBodyPart(messageBodyPart2);
+
+            //message.setContent(multipart);
+
+            Transport.send(message);
+
+            return true;
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
 }
