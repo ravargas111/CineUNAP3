@@ -8,9 +8,25 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD
     <jar href="CineUNA.jar" size="137515" download="eager" />
+=======
+    <jar href="CineUNA.jar" size="43823" download="eager" />
+    <jar href="lib\com.jaspersoft.studio.bundles.poi_3.10.1.201502161145.jar" size="6683525" download="eager" />
+    <jar href="lib\com.lowagie.text-2.1.7.jar" size="1782376" download="eager" />
+    <jar href="lib\commons-collections-3.2.1-1.0.0.jar" size="590365" download="eager" />
+    <jar href="lib\commons-digester-2.1.jar" size="196768" download="eager" />
+    <jar href="lib\commons-logging-1.1.1-api.jar" size="52124" download="eager" />
+    <jar href="lib\ecj-4.3.1.jar" size="1830791" download="eager" />
+>>>>>>> 8328139837d3ffdf291a906959ee56597b5ae75d
     <jar href="lib\fontawesomefx-8.9.jar" size="571068" download="eager" />
+    <jar href="lib\itext-5.0.6.jar" size="1613319" download="eager" />
+    <jar href="lib\jasperreports-6.3.0.jar" size="5400490" download="eager" />
+    <jar href="lib\jasperreports-6.6.0.jar" size="5534555" download="eager" />
     <jar href="lib\jfoenix-8.0.4.jar" size="2487326" download="eager" />
+    <jar href="lib\jsf-impl-1.2.jar" size="1137169" download="eager" />
+    <jar href="lib\mail.jar" size="521000" download="eager" />
+    <jar href="lib\org.apache.commons.beanutils.jar" size="201356" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="CineUNA" >
     <param name="requiredFXVersion" value="8.0+"/>
