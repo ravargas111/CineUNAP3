@@ -5,10 +5,13 @@
  */
 package cineuna.controller;
 
+import cineuna.model.UsuarioDto;
 import cineuna.model.cobro;
+import cineuna.service.UsuarioService;
 import cineuna.util.AppContext;
 import cineuna.util.FlowController;
 import cineuna.util.Mensaje;
+import cineuna.util.Respuesta;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -101,6 +104,7 @@ public class LogInController extends Controller implements Initializable {
     private JFXTextField tfRegCorreo;
     @FXML
     private StackPane vbLogIn;
+    UsuarioDto usuario;
 
     /**
      * Initializes the controller class.
@@ -183,7 +187,31 @@ public class LogInController extends Controller implements Initializable {
     
     @FXML
     private void registrarCliente(ActionEvent event) {
-        validaCamposRegistro();
+        Boolean req = validaCamposRegistro();
+        if(req){
+            usuario = new UsuarioDto();
+            usuario.setUsuNombre(tfRegNombre.getText());
+            usuario.setUsuPapellido(tfRegApe.getText());
+            usuario.setUsuUser(tfRegUsu.getText());
+            usuario.setUsuPassword(tfRegContra.getText());
+            usuario.setUsuEmail(tfRegCorreo.getText());
+            
+             try {
+            UsuarioService usuarioService = new UsuarioService();
+            Respuesta respuesta = usuarioService.guardarUsuario(usuario);
+             if (!respuesta.getEstado()) {
+                    new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar usuario", getStage(), respuesta.getMensaje());
+                } else {
+                    usuario = (UsuarioDto) respuesta.getResultado("Usuario");
+                    new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar usuario", getStage(), "Usuario creado correctamente.");
+                    sendEmail(usuario);
+                }
+            
+        } catch (Exception ex) {
+            Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, "Error registrando usuario.", ex);
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar usuario", getStage(), "Ocurrio un error registrando el usuario.");
+        }
+     }   
     }
     
     private Boolean validaCamposRegistro(){
@@ -230,7 +258,7 @@ public class LogInController extends Controller implements Initializable {
         this.vbRegCliente.setVisible(false);
     }
     // Prueba de enviar email
-     public boolean sendEmail() throws ParserConfigurationException, SAXException, IOException, AddressException, MessagingException {
+     public boolean sendEmail(UsuarioDto usuario) throws ParserConfigurationException, SAXException, IOException, AddressException, MessagingException {
 
         final String username = "mario.flores2598@gmail.com";
         // final String username = "eflores.crc@gmail.com";
@@ -262,9 +290,9 @@ public class LogInController extends Controller implements Initializable {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO,
-            InternetAddress.parse("mario.flores2598@gmail.com"));
-            message.setSubject("Comprobando mail ") ;
-            message.setText("GEsta es la prueba.");
+            InternetAddress.parse(usuario.getUsuEmail()));
+            message.setSubject("Activacion Cuenta CINEUNAPZ") ;
+            message.setText("Ingrese al link para activar la cuenta " + "http://DESKTOP-RCLJD2G:80/WsCineUNA/wsCine/UsuarioController/activar/"+usuario.getUsuUser());
 
             MimeBodyPart messageBodyPart1 = new MimeBodyPart();
             MimeBodyPart messageBodyPart2 = new MimeBodyPart();
