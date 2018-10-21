@@ -5,29 +5,23 @@
  */
 package cineuna.controller;
 
-import cineuna.model.cobro;
+//import cineuna.model.cobro;
 import cineuna.util.AppContext;
 import cineuna.util.FlowController;
 import cineuna.util.Mensaje;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -37,9 +31,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
@@ -57,7 +48,6 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.xml.sax.SAXException;
 import java.util.Map;
 import java.util.HashMap;
@@ -320,6 +310,7 @@ public class LogInController extends Controller implements Initializable {
         }
 
     }
+     
      public void generarReport() throws JRException, FileNotFoundException{
          String userHomeDirect = System.getProperty("user.home");
          String outPutFile = "src/cineuna/jasperReport/jasperPrueba.pdf";
