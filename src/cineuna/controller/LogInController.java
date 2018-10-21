@@ -5,10 +5,17 @@
  */
 package cineuna.controller;
 
+<<<<<<< HEAD
 //import cineuna.model.cobro;
+=======
+import cineuna.model.UsuarioDto;
+import cineuna.model.cobro;
+import cineuna.service.UsuarioService;
+>>>>>>> 8a3a79e14fa29b935dc6db6e89da35d5c21fed23
 import cineuna.util.AppContext;
 import cineuna.util.FlowController;
 import cineuna.util.Mensaje;
+import cineuna.util.Respuesta;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -91,6 +98,7 @@ public class LogInController extends Controller implements Initializable {
     private JFXTextField tfRegCorreo;
     @FXML
     private StackPane vbLogIn;
+    UsuarioDto usuario;
 
     /**
      * Initializes the controller class.
@@ -173,7 +181,31 @@ public class LogInController extends Controller implements Initializable {
     
     @FXML
     private void registrarCliente(ActionEvent event) {
-        validaCamposRegistro();
+        Boolean req = validaCamposRegistro();
+        if(req){
+            usuario = new UsuarioDto();
+            usuario.setUsuNombre(tfRegNombre.getText());
+            usuario.setUsuPapellido(tfRegApe.getText());
+            usuario.setUsuUser(tfRegUsu.getText());
+            usuario.setUsuPassword(tfRegContra.getText());
+            usuario.setUsuEmail(tfRegCorreo.getText());
+            
+             try {
+            UsuarioService usuarioService = new UsuarioService();
+            Respuesta respuesta = usuarioService.guardarUsuario(usuario);
+             if (!respuesta.getEstado()) {
+                    new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar usuario", getStage(), respuesta.getMensaje());
+                } else {
+                    usuario = (UsuarioDto) respuesta.getResultado("Usuario");
+                    new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar usuario", getStage(), "Usuario creado correctamente.");
+                    sendEmail(usuario);
+                }
+            
+        } catch (Exception ex) {
+            Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, "Error registrando usuario.", ex);
+            new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar usuario", getStage(), "Ocurrio un error registrando el usuario.");
+        }
+     }   
     }
     
     private Boolean validaCamposRegistro(){
@@ -220,7 +252,7 @@ public class LogInController extends Controller implements Initializable {
         this.vbRegCliente.setVisible(false);
     }
     // Prueba de enviar email
-     public boolean sendEmail() throws ParserConfigurationException, SAXException, IOException, AddressException, MessagingException {
+     public boolean sendEmail(UsuarioDto usuario) throws ParserConfigurationException, SAXException, IOException, AddressException, MessagingException {
 
         final String username = "mario.flores2598@gmail.com";
         // final String username = "eflores.crc@gmail.com";
@@ -252,9 +284,9 @@ public class LogInController extends Controller implements Initializable {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO,
-            InternetAddress.parse("mario.flores2598@gmail.com"));
-            message.setSubject("Comprobando mail ") ;
-            message.setText("GEsta es la prueba.");
+            InternetAddress.parse(usuario.getUsuEmail()));
+            message.setSubject("Activacion Cuenta CINEUNAPZ") ;
+            message.setText("Ingrese al link para activar la cuenta " + "http://DESKTOP-RCLJD2G:80/WsCineUNA/wsCine/UsuarioController/activar/"+usuario.getUsuUser());
 
             MimeBodyPart messageBodyPart1 = new MimeBodyPart();
             MimeBodyPart messageBodyPart2 = new MimeBodyPart();
@@ -316,21 +348,26 @@ public class LogInController extends Controller implements Initializable {
          String outPutFile = "src/cineuna/jasperReport/jasperPrueba.pdf";
          List<cobro> list = new ArrayList<>();
          
-         cobro c1 = new cobro("25/01/1998",15000);
-         cobro c2 = new cobro("25/01/2018",25000);
+         cobro c1 = new cobro();
+         c1.setNombre("mario"); 
+         c1.setInicio("18/06/1996");
+         c1.setfin("25/01/1998");
+         c1.setOcupados(15);
+         c1.setDesocupados(10);
+         c1.setMonto(50000);
          list.add(c1);
-         list.add(c2);
-        // JRBeanCollectionDataSource cobrojrb = new JRBeanCollectionDataSource(list);
-         JasperReport jasperReport = JasperCompileManager.compileReport("src/cineuna/jasperReport/ReporteGanancias=!!.jrxml");
+         JRBeanCollectionDataSource cobrojrb = new JRBeanCollectionDataSource(list);
+         
+         JasperReport jasperReport = JasperCompileManager.compileReport("src/cineuna/jasperReport/reporteCanchasPZu.jrxml");
          Map<String, Object> parametros = new HashMap<>();
-         Map<String, Object> parametros1 = new HashMap<>();
-         parametros1.put("idPar",22);
-       //  parametros.put("dataSource", cobrojrb);
-         JasperPrint jasperprint = JasperFillManager.fillReport(jasperReport, parametros1, new JREmptyDataSource());
+         parametros.put("dataSource", cobrojrb);
+         JasperPrint jasperprint = JasperFillManager.fillReport(jasperReport, parametros, new JREmptyDataSource());
          
          OutputStream outputStream = new FileOutputStream(new File(outPutFile));
             /* Write content to PDF file */
          JasperExportManager.exportReportToPdfStream(jasperprint, outputStream);
+         File png = new File("src/cineuna/jasperReport/jasperPrueba.pdf");
+         
      }
 
 }
