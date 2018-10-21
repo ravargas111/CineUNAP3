@@ -353,21 +353,26 @@ public class LogInController extends Controller implements Initializable {
          String outPutFile = "src/cineuna/jasperReport/jasperPrueba.pdf";
          List<cobro> list = new ArrayList<>();
          
-         cobro c1 = new cobro("25/01/1998",15000);
-         cobro c2 = new cobro("25/01/2018",25000);
+         cobro c1 = new cobro();
+         c1.setNombre("mario"); 
+         c1.setInicio("18/06/1996");
+         c1.setfin("25/01/1998");
+         c1.setOcupados(15);
+         c1.setDesocupados(10);
+         c1.setMonto(50000);
          list.add(c1);
-         list.add(c2);
-        // JRBeanCollectionDataSource cobrojrb = new JRBeanCollectionDataSource(list);
-         JasperReport jasperReport = JasperCompileManager.compileReport("src/cineuna/jasperReport/ReporteGanancias=!!.jrxml");
+         JRBeanCollectionDataSource cobrojrb = new JRBeanCollectionDataSource(list);
+         
+         JasperReport jasperReport = JasperCompileManager.compileReport("src/cineuna/jasperReport/reporteCanchasPZu.jrxml");
          Map<String, Object> parametros = new HashMap<>();
-         Map<String, Object> parametros1 = new HashMap<>();
-         parametros1.put("idPar",22);
-       //  parametros.put("dataSource", cobrojrb);
-         JasperPrint jasperprint = JasperFillManager.fillReport(jasperReport, parametros1, new JREmptyDataSource());
+         parametros.put("dataSource", cobrojrb);
+         JasperPrint jasperprint = JasperFillManager.fillReport(jasperReport, parametros, new JREmptyDataSource());
          
          OutputStream outputStream = new FileOutputStream(new File(outPutFile));
             /* Write content to PDF file */
          JasperExportManager.exportReportToPdfStream(jasperprint, outputStream);
+         File png = new File("src/cineuna/jasperReport/jasperPrueba.pdf");
+         
      }
 
 }
