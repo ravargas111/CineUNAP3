@@ -294,8 +294,8 @@ public class LogInController extends Controller implements Initializable {
     //  enviar email
      public boolean sendEmailActivar(UsuarioDto usuario) throws ParserConfigurationException, SAXException, IOException, AddressException, MessagingException {
 
-        final String username = "mario.flores2598@gmail.com";
-        final String password = "m60a16r53i53o";
+        final String username = "proyectosuna83@gmail.com";
+        final String password = "proy.una";
 
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -336,8 +336,8 @@ public class LogInController extends Controller implements Initializable {
      //  enviar email
      public boolean sendEmailNewPass(UsuarioDto usuario,String newPass) throws ParserConfigurationException, SAXException, IOException, AddressException, MessagingException {
 
-        final String username = "mario.flores2598@gmail.com";
-        final String password = "m60a16r53i53o";
+        final String username = "proyectosuna83@gmail.com";
+        final String password = "proy.una";
 
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
