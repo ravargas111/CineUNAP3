@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="CineUNA.jar" size="55385" download="eager" />
+    <jar href="CineUNA.jar" size="53175" download="eager" />
     <jar href="lib\aopalliance-repackaged-2.4.0-b34.jar" size="14766" download="eager" />
     <jar href="lib\asm-debug-all-5.0.4.jar" size="379036" download="eager" />
     <jar href="lib\com.jaspersoft.studio.bundles.poi_3.10.1.201502161145.jar" size="6683525" download="eager" />
