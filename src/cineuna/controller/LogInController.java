@@ -19,6 +19,11 @@ import cineuna.util.Respuesta;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+<<<<<<< HEAD
+=======
+import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
+import java.io.ByteArrayInputStream;
+>>>>>>> 4b0a118ccebd400d1e54f3a504ff3876c3cdbdbd
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -58,6 +63,9 @@ import net.sf.jasperreports.engine.JasperPrint;
 import org.xml.sax.SAXException;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Random;
+import static javafx.scene.control.Alert.AlertType.ERROR;
+import static javafx.scene.control.Alert.AlertType.INFORMATION;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperReport;
 
@@ -81,8 +89,6 @@ public class LogInController extends Controller implements Initializable {
     @FXML
     private VBox vbOpcUsu;
     @FXML
-    private VBox vbRegUsu;
-    @FXML
     private VBox vbRegCliente;
     @FXML
     private JFXTextField tfRegNombre;
@@ -99,6 +105,21 @@ public class LogInController extends Controller implements Initializable {
     @FXML
     private StackPane vbLogIn;
     UsuarioDto usuario;
+    @FXML
+    private JFXTextField tfRegApe1;
+    @FXML
+    private VBox vbpassChange;
+    @FXML
+    private JFXTextField txtPassChange;
+    @FXML
+    private VBox vbNewPass;
+    @FXML
+    private JFXPasswordField txtNewPass;
+    @FXML
+    private JFXPasswordField txtNewPassConf;
+    @FXML
+    private VBox vbLogInvb;
+    UsuarioDto usuDto;
 
     /**
      * Initializes the controller class.
@@ -116,36 +137,45 @@ public class LogInController extends Controller implements Initializable {
     @FXML
     private void irMain(ActionEvent event) {
         try{
-         /*  Boolean veri = sendEmail();
-           if (veri) {
-               new Mensaje().showModal(Alert.AlertType.ERROR, "Correo prueba", (Stage) root.getScene().getWindow(), "Se envio.");
-           }*/
-           generarReport();
+
         if (txtUsuario.getText() == null || txtUsuario.getText().isEmpty()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Validación de usuario", (Stage) root.getScene().getWindow(), "Es necesario digitar un usuario para ingresar al sistema.");
             } else if (txtClave.getText() == null || txtClave.getText().isEmpty()) {
                 new Mensaje().showModal(Alert.AlertType.ERROR, "Validación de usuario", (Stage) root.getScene().getWindow(), "Es necesario digitar la clave para ingresar al sistema.");
             } else {
-                /*EmpleadoService empleadoService =  new EmpleadoService();
-                Respuesta respuesta = empleadoService.getUsuario(txtUsuario.getText(), txtClave.getText());
+                
+                 UsuarioService usuarioService = new UsuarioService();
+                 Respuesta respuesta = usuarioService.getUsuario(txtUsuario.getText(), txtClave.getText());
+                 
                 if (respuesta.getEstado()) {
-                    AppContext.getInstance().set("Usuario", (EmpleadoDto)respuesta.getResultado("Empleado"));
-                    FlowController.getInstance().goMain();
-                        ((Stage) btnIngresar.getScene().getWindow()).close();
-                } else {
-                    new Mensaje().showModal(Alert.AlertType.ERROR, "Ingreso", getStage(), respuesta.getMensaje());
-                }*/
-                
-                if(cbAdmin.isSelected())
-                AppContext.getInstance().set("administrador", (Boolean)true);
-                else
-                   AppContext.getInstance().set("administrador", (Boolean)false); 
-                
-                AppContext.getInstance().set("nombre", (String)this.txtUsuario.getText());
-                FlowController.getInstance().goMain();
-                ((Stage) root.getScene().getWindow()).close();
-                
-            }
+                       usuDto = (UsuarioDto)respuesta.getResultado("Usuario");
+                       if(txtClave.getText().equals(usuDto.getUsuNewpassword())){
+                            if(usuDto.getUsuCambio().equals("N")){
+                                usuDto.setUsuCambio("S");
+                                usuarioService.guardarUsuario(usuDto);
+                            }
+                            this.vbInicioSesion.setVisible(false);
+                            this.vbNewPass.setVisible(true);  
+                        }else{
+                                if(usuDto.getUsuEstado().equals("A")){
+                                     if(usuDto.usuAdmin.equals("S")){
+                                         AppContext.getInstance().set("administrador", (Boolean)true);
+                                    } 
+                                    else{
+                                        AppContext.getInstance().set("administrador", (Boolean)false);   
+                                     } 
+                                     AppContext.getInstance().setUsuario((UsuarioDto)respuesta.getResultado("Usuario"));
+                                     FlowController.getInstance().goMain();
+                                     ((Stage) root.getScene().getWindow()).close();  
+                                }else{                    
+                                     new Mensaje().show(Alert.AlertType.ERROR, "Cuenta Inactiva", "Es necesario activar la cuenta mediante el correo electronico");
+                                 }
+                        }
+                }
+                else {
+                    new Mensaje().showModal(Alert.AlertType.ERROR, "Usuario no registrado", getStage(), respuesta.getMensaje());
+                }
+        }
         } catch (Exception ex) {
             Logger.getLogger(LogInController.class.getName()).log(Level.SEVERE, "Error ingresando.", ex);
         }
@@ -153,6 +183,10 @@ public class LogInController extends Controller implements Initializable {
 
     @FXML
     private void irRecuperacion(ActionEvent event) {
+       
+        this.vbInicioSesion.setVisible(false);    
+        this.vbpassChange.setVisible(true);
+        
     }
 
     @FXML
@@ -189,6 +223,9 @@ public class LogInController extends Controller implements Initializable {
             usuario.setUsuUser(tfRegUsu.getText());
             usuario.setUsuPassword(tfRegContra.getText());
             usuario.setUsuEmail(tfRegCorreo.getText());
+            if(!tfRegApe1.getText().isEmpty()){{
+                usuario.setUsuSapellido(tfRegApe1.getText());
+            }
             
              try {
             UsuarioService usuarioService = new UsuarioService();
@@ -198,7 +235,7 @@ public class LogInController extends Controller implements Initializable {
                 } else {
                     usuario = (UsuarioDto) respuesta.getResultado("Usuario");
                     new Mensaje().showModal(Alert.AlertType.INFORMATION, "Guardar usuario", getStage(), "Usuario creado correctamente.");
-                    sendEmail(usuario);
+                    sendEmailActivar(usuario);
                 }
             
         } catch (Exception ex) {
@@ -206,6 +243,7 @@ public class LogInController extends Controller implements Initializable {
             new Mensaje().showModal(Alert.AlertType.ERROR, "Guardar usuario", getStage(), "Ocurrio un error registrando el usuario.");
         }
      }   
+    }
     }
     
     private Boolean validaCamposRegistro(){
@@ -251,19 +289,13 @@ public class LogInController extends Controller implements Initializable {
         this.vbInicioSesion.setVisible(false);
         this.vbRegCliente.setVisible(false);
     }
-    // Prueba de enviar email
-     public boolean sendEmail(UsuarioDto usuario) throws ParserConfigurationException, SAXException, IOException, AddressException, MessagingException {
+    //  enviar email
+     public boolean sendEmailActivar(UsuarioDto usuario) throws ParserConfigurationException, SAXException, IOException, AddressException, MessagingException {
 
-        final String username = "mario.flores2598@gmail.com";
-        // final String username = "eflores.crc@gmail.com";
-        final String password = "m60a16r53i53o";
+        final String username = "proyectosuna83@gmail.com";
+        final String password = "proy.una";
 
         Properties props = new Properties();
-        /*props.put("mail.smtp.auth", true);
-        props.put("mail.smtp.starttls.enable", true);
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");*/
-
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.socketFactory.port", "465");
         props.put("mail.smtp.socketFactory.class",
@@ -288,49 +320,48 @@ public class LogInController extends Controller implements Initializable {
             message.setSubject("Activacion Cuenta CINEUNAPZ") ;
             message.setText("Ingrese al link para activar la cuenta " + "http://DESKTOP-RCLJD2G:80/WsCineUNA/wsCine/UsuarioController/activar/"+usuario.getUsuUser());
 
-            MimeBodyPart messageBodyPart1 = new MimeBodyPart();
-            MimeBodyPart messageBodyPart2 = new MimeBodyPart();
-            MimeBodyPart messageBodyPart3 = new MimeBodyPart();
+            Transport.send(message);
 
-            Multipart multipart = new MimeMultipart();
+            return true;
 
-          /*  messageBodyPart1 = new MimeBodyPart();
-            String file = parametrosGeneralesDto.getRutaComprobantesXmlFirmado() + comp.getClave() + "firmado.xml";
-            String fileName = "Comprobante-" + comp.getClave() + ".xml";
-            DataSource source = new FileDataSource(file);
-            messageBodyPart1.setDataHandler(new DataHandler(source));
-            messageBodyPart1.setFileName(fileName);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            return false;
+        }
 
-            messageBodyPart2 = new MimeBodyPart();
-            String file2 = parametrosGeneralesDto.getRutaComprobantesPdf() + comp.getClave() + ".pdf";
-            String fileName2 = "Comprobante-" + comp.getClave() + ".pdf";
-            DataSource source2 = new FileDataSource(file2);
-            messageBodyPart2.setDataHandler(new DataHandler(source2));
-            messageBodyPart2.setFileName(fileName2);*/
+    }
+     
+     //  enviar email
+     public boolean sendEmailNewPass(UsuarioDto usuario,String newPass) throws ParserConfigurationException, SAXException, IOException, AddressException, MessagingException {
 
-           /* if (comprobanteHaciendaDto.getRespuestaXml() != null) {
+        final String username = "proyectosuna83@gmail.com";
+        final String password = "proy.una";
 
-                String string = comprobanteHaciendaDto.getRespuestaXml();
-                byte[] byteArray = Base64.decodeBase64(string.getBytes());
-                String decodedString = new String(byteArray);
-                InputStream stream = new ByteArrayInputStream(decodedString.getBytes(StandardCharsets.UTF_8));
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.socketFactory.port", "465");
+        props.put("mail.smtp.socketFactory.class",
+                "javax.net.ssl.SSLSocketFactory");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.port", "465");
 
-                File XmlRespuestaFile = new File("respuestaMinisterioHacienda.xml");
-                FileUtils.writeByteArrayToFile(XmlRespuestaFile, byteArray);
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
 
-                messageBodyPart3 = new MimeBodyPart();
+        try {
 
-                DataSource source3 = new FileDataSource(XmlRespuestaFile);
-                messageBodyPart3.setDataHandler(new DataHandler(source3));
-                messageBodyPart3.setFileName(XmlRespuestaFile.getName());
-                multipart.addBodyPart(messageBodyPart3);
-
-            }*/
-
-           // multipart.addBodyPart(messageBodyPart1);
-           // multipart.addBodyPart(messageBodyPart2);
-
-            //message.setContent(multipart);
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username));
+            message.setRecipients(Message.RecipientType.TO,
+            InternetAddress.parse(usuario.getUsuEmail()));
+            message.setSubject("Cambio de Contraseña Cuenta CINEUNAPZ") ;
+            message.setText("Para realizar el cambio de contraseña ingrese con su nombre de usuario y esta contraseña."
+                    + "Contraseña probicional :  " + newPass);
 
             Transport.send(message);
 
@@ -343,11 +374,13 @@ public class LogInController extends Controller implements Initializable {
 
     }
      
+<<<<<<< HEAD
+=======
+     
+>>>>>>> 4b0a118ccebd400d1e54f3a504ff3876c3cdbdbd
      public void generarReport() throws JRException, FileNotFoundException{
-         String userHomeDirect = System.getProperty("user.home");
          String outPutFile = "src/cineuna/jasperReport/jasperPrueba.pdf";
-         List<cobro> list = new ArrayList<>();
-         
+         List<cobro> list = new ArrayList<>();        
          cobro c1 = new cobro();
          c1.setNombre("mario"); 
          c1.setInicio("18/06/1996");
@@ -356,8 +389,7 @@ public class LogInController extends Controller implements Initializable {
          c1.setDesocupados(10);
          c1.setMonto(50000);
          list.add(c1);
-         JRBeanCollectionDataSource cobrojrb = new JRBeanCollectionDataSource(list);
-         
+         JRBeanCollectionDataSource cobrojrb = new JRBeanCollectionDataSource(list);        
          JasperReport jasperReport = JasperCompileManager.compileReport("src/cineuna/jasperReport/reporteCanchasPZu.jrxml");
          Map<String, Object> parametros = new HashMap<>();
          parametros.put("dataSource", cobrojrb);
@@ -370,4 +402,94 @@ public class LogInController extends Controller implements Initializable {
          
      }
 
+    @FXML
+    private void btnVlvPassChange(ActionEvent event) {
+        this.vbInicioSesion.setVisible(true);    
+        this.vbpassChange.setVisible(false);
+    }
+
+    @FXML
+    private void btnMailPassChange(ActionEvent event) throws ParserConfigurationException, SAXException, IOException, MessagingException {
+        if(!this.txtPassChange.getText().isEmpty()){
+            UsuarioDto usuDto;
+            UsuarioService usuarioService = new UsuarioService();
+            Respuesta respuesta = usuarioService.getUsuarioUsu(txtUsuario.getText());
+ 
+                if (respuesta.getEstado()) {
+                    usuDto = (UsuarioDto)respuesta.getResultado("Usuario");
+                    String newPass = generarNewPassword();
+                   
+                    Boolean enviado =  sendEmailNewPass(usuDto,newPass);
+                    if(enviado){
+                      usuDto.setUsuNewpassword(newPass);
+                      usuarioService.guardarUsuario(usuDto);
+                      this.vbpassChange.setVisible(false);
+                      this.vbLogIn.setVisible(true);  
+                    } 
+                    else{
+            new Mensaje().show(ERROR, "Error Enviando Correo", "Reeintentelo");
+        }
+        }else{
+                 new Mensaje().showModal(Alert.AlertType.ERROR, "Encontrando usuario", getStage(), respuesta.getMensaje());    
+                }
+        }
+        else{
+            new Mensaje().show(ERROR, "Nombre de usuario vacio", "Ingrese su nombre de usuario");
+        }
+    
+    }
+    @FXML
+    private void btnNewPassVlv(ActionEvent event) {
+           this.vbInicioSesion.setVisible(true);
+           this.vbNewPass.setVisible(false);
+    }
+
+    @FXML
+    private void btnNewPassCont(ActionEvent event) {
+        if(txtNewPass.getText().isEmpty()||txtNewPass.getText().length()<8){
+            new Mensaje().show(ERROR, "Contraseña invalida!", "Tamaño mínimo de contraseña de 8 caracteres");
+        }
+        else if(txtNewPass.getText() == null ? txtNewPassConf.getText() != null : !txtNewPass.getText().equals(txtNewPassConf.getText())){
+            new Mensaje().show(ERROR, "Contraseña invalida!", "Contraseñas no coinciden");
+        }else{
+            UsuarioService usuarioService = new UsuarioService();
+            usuDto.setUsuPassword(txtNewPass.getText());
+            usuDto.setUsuCambio("N");
+            usuDto.setUsuNewpassword("");
+            
+            Respuesta respuesta = usuarioService.guardarUsuario(usuDto);
+                if (respuesta.getEstado()) {  
+                    new Mensaje().show(INFORMATION, "Usuario actualizando !","Se cambio tu contreseña correctamente");  
+                      this.vbInicioSesion.setVisible(false);
+                      this.vbNewPass.setVisible(true);  
+                } else{
+                     new Mensaje().show(ERROR, "Error Actualizando usuario!", respuesta.getMensaje());  
+                     this.vbInicioSesion.setVisible(false);
+                      this.vbNewPass.setVisible(true); 
+                }
+            
+        }
+    }
+
+    
+     private String generarNewPassword() {
+         Integer numero;
+         Integer numeroABC;
+         String newPass ="";
+         String [] abecedario = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", 
+         "K", "L", "M","N","O","P","Q","R","S","T","U","V","W", "X","Y","Z" };
+
+int numRandon = (int) Math.round(Math.random() * 26 ) ;
+
+System.out.println( abecedario[numRandon] );
+         
+         for(int i = 0; i <= 3 ; i++){
+            numero = (int) (Math.random() * 9) + 1;
+            numeroABC = (int) (Math.random() * 26) + 1;
+            newPass += numero.toString();
+            
+            newPass += abecedario[numeroABC];
+         }
+         return newPass;
+    }
 }

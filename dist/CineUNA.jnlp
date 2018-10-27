@@ -10,11 +10,15 @@
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <jar href="CineUNA.jar" size="137515" download="eager" />
 =======
     <jar href="CineUNA.jar" size="43823" download="eager" />
 =======
     <jar href="CineUNA.jar" size="55385" download="eager" />
+=======
+    <jar href="CineUNA.jar" size="53175" download="eager" />
+>>>>>>> 4b0a118ccebd400d1e54f3a504ff3876c3cdbdbd
     <jar href="lib\aopalliance-repackaged-2.4.0-b34.jar" size="14766" download="eager" />
     <jar href="lib\asm-debug-all-5.0.4.jar" size="379036" download="eager" />
 >>>>>>> 8a3a79e14fa29b935dc6db6e89da35d5c21fed23

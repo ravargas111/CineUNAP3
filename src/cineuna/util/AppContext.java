@@ -1,6 +1,7 @@
 
 package cineuna.util;
 
+import cineuna.model.UsuarioDto;
 import java.util.HashMap;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -12,9 +13,18 @@ public class AppContext {
     private static HashMap<String, Object> context = new HashMap<>();
     private static Stage mainStage = new Stage();
     private static Integer modoJuego; 
+    private UsuarioDto usuario;
     
     private AppContext() {
         cargarPropiedades();
+    }
+
+    public UsuarioDto getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(UsuarioDto usuario) {
+        this.usuario = usuario;
     }
 
     private static void createInstance() {
