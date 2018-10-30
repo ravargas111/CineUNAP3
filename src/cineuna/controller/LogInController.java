@@ -4,13 +4,8 @@
  * and open the template in the editor.
  */
 package cineuna.controller;
-
-<<<<<<< HEAD
-//import cineuna.model.cobro;
-=======
 import cineuna.model.UsuarioDto;
 import cineuna.service.UsuarioService;
->>>>>>> 8a3a79e14fa29b935dc6db6e89da35d5c21fed23
 import cineuna.util.AppContext;
 import cineuna.util.FlowController;
 import cineuna.util.Mensaje;
@@ -18,11 +13,8 @@ import cineuna.util.Respuesta;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-<<<<<<< HEAD
-=======
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import java.io.ByteArrayInputStream;
->>>>>>> 4b0a118ccebd400d1e54f3a504ff3876c3cdbdbd
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -371,13 +363,9 @@ public class LogInController extends Controller implements Initializable {
             return false;
         }
 
-    }
-     
-<<<<<<< HEAD
-=======
-     
->>>>>>> 4b0a118ccebd400d1e54f3a504ff3876c3cdbdbd
-     public void generarReport() throws JRException, FileNotFoundException{
+    }  
+
+    /* public void generarReport() throws JRException, FileNotFoundException{
          String outPutFile = "src/cineuna/jasperReport/jasperPrueba.pdf";
          List<cobro> list = new ArrayList<>();        
          cobro c1 = new cobro();
@@ -396,10 +384,10 @@ public class LogInController extends Controller implements Initializable {
          
          OutputStream outputStream = new FileOutputStream(new File(outPutFile));
             /* Write content to PDF file */
-         JasperExportManager.exportReportToPdfStream(jasperprint, outputStream);
+       /*  JasperExportManager.exportReportToPdfStream(jasperprint, outputStream);
          File png = new File("src/cineuna/jasperReport/jasperPrueba.pdf");
          
-     }
+     }*/
 
     @FXML
     private void btnVlvPassChange(ActionEvent event) {
