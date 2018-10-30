@@ -5,8 +5,12 @@
  */
 package cineuna.controller;
 
+<<<<<<< HEAD
+//import cineuna.model.cobro;
+=======
 import cineuna.model.UsuarioDto;
 import cineuna.service.UsuarioService;
+>>>>>>> 8a3a79e14fa29b935dc6db6e89da35d5c21fed23
 import cineuna.util.AppContext;
 import cineuna.util.FlowController;
 import cineuna.util.Mensaje;
@@ -14,23 +18,21 @@ import cineuna.util.Respuesta;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+<<<<<<< HEAD
+=======
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
 import java.io.ByteArrayInputStream;
+>>>>>>> 4b0a118ccebd400d1e54f3a504ff3876c3cdbdbd
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -40,9 +42,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
@@ -60,7 +59,6 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.xml.sax.SAXException;
 import java.util.Map;
 import java.util.HashMap;
@@ -375,7 +373,10 @@ public class LogInController extends Controller implements Initializable {
 
     }
      
+<<<<<<< HEAD
+=======
      
+>>>>>>> 4b0a118ccebd400d1e54f3a504ff3876c3cdbdbd
      public void generarReport() throws JRException, FileNotFoundException{
          String outPutFile = "src/cineuna/jasperReport/jasperPrueba.pdf";
          List<cobro> list = new ArrayList<>();        
