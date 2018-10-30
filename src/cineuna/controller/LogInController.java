@@ -214,8 +214,8 @@ public class LogInController extends Controller implements Initializable {
             usuario.setUsuUser(tfRegUsu.getText());
             usuario.setUsuPassword(tfRegContra.getText());
             usuario.setUsuEmail(tfRegCorreo.getText());
-            String codigo = generarNewPassword();
-            usuario.setUsuCodAct(codigo);
+            String cod = generarNewPassword();
+            usuario.setUsuCodAct(cod);
             if(!tfRegApe1.getText().isEmpty()){{
                 usuario.setUsuSapellido(tfRegApe1.getText());
             }
