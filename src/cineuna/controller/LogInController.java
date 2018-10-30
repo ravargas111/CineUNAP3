@@ -214,6 +214,8 @@ public class LogInController extends Controller implements Initializable {
             usuario.setUsuUser(tfRegUsu.getText());
             usuario.setUsuPassword(tfRegContra.getText());
             usuario.setUsuEmail(tfRegCorreo.getText());
+            String codigo = generarNewPassword();
+            usuario.setUsuCodAct(codigo);
             if(!tfRegApe1.getText().isEmpty()){{
                 usuario.setUsuSapellido(tfRegApe1.getText());
             }
@@ -235,6 +237,7 @@ public class LogInController extends Controller implements Initializable {
         }
      }   
     }
+        
     }
     
     private Boolean validaCamposRegistro(){
@@ -285,7 +288,6 @@ public class LogInController extends Controller implements Initializable {
 
         final String username = "proyectosuna83@gmail.com";
         final String password = "proy.una";
-
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.socketFactory.port", "465");
@@ -309,7 +311,7 @@ public class LogInController extends Controller implements Initializable {
             message.setRecipients(Message.RecipientType.TO,
             InternetAddress.parse(usuario.getUsuEmail()));
             message.setSubject("Activacion Cuenta CINEUNAPZ") ;
-            message.setText("Ingrese al link para activar la cuenta " + "http://DESKTOP-RCLJD2G:80/WsCineUNA/wsCine/UsuarioController/activar/"+usuario.getUsuUser());
+            message.setText("Ingrese al link para activar la cuenta " + "http://DESKTOP-RCLJD2G:80/WsCineUNA/wsCine/UsuarioController/activar/"+usuario.getUsuCodAct());
 
             Transport.send(message);
 
