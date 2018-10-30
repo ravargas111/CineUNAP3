@@ -6,7 +6,6 @@
 package cineuna.controller;
 
 import cineuna.model.UsuarioDto;
-import cineuna.model.cobro;
 import cineuna.service.UsuarioService;
 import cineuna.util.AppContext;
 import cineuna.util.FlowController;
